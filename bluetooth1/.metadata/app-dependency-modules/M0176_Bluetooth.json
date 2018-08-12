@@ -1,0 +1,148 @@
+{
+	"syncMethodes":[
+		{
+			"Description":"打开蓝牙返回 true 否则false",
+			"Paras":[],
+			"ID":"enable",
+			"ReturnType":"Bool",
+			"Name":"开启蓝牙",
+			"ReturnDesc":"打开蓝牙返回 true 否则false"
+		},
+		{
+			"Description":"disable",
+			"Paras":[],
+			"ID":"disable",
+			"ReturnType":"Bool",
+			"Name":"关闭蓝牙",
+			"ReturnDesc":"关闭成功 返回true 否则返回 false"
+		},
+		{
+			"Description":"关闭扫描方法，关闭成功返回 true 否则返回false",
+			"Paras":[],
+			"ID":"stopScan",
+			"ReturnType":"Bool",
+			"Name":"关闭扫描方法",
+			"ReturnDesc":"关闭扫描方法，关闭成功返回 true 否则返回false"
+		},
+		{
+			"Description":"关闭 connect方法",
+			"Paras":[],
+			"ID":"close",
+			"ReturnType":"Bool",
+			"Name":"关闭 connect方法",
+			"ReturnDesc":"关闭成功返回 true 否则返回false"
+		}
+	],
+	"Type":"SM",
+	"Description":"支持普通蓝牙spp协议 官网的低功耗的，这个是spp协议",
+	"Version":"",
+	"Events":[
+		{
+			"Description":"配对 和 链接的是 激发该事件",
+			"ID":"connectResult",
+			"ReturnType":"Node",
+			"ReturnDesc":"{\"type\":\"pair\",\"msg\":\"true\"}  {\"type\":\"connect\",\"msg\":\"true\"}"
+		},
+		{
+			"Description":"链接成功后，接受数据接口",
+			"ID":"receive",
+			"ReturnType":"Node",
+			"ReturnDesc":"{\"msg\":\"接受到的内容\"} 需要注意 必须是16进制"
+		},
+		{
+			"Description":"扫描结果",
+			"ID":"scan",
+			"ReturnType":"Node",
+			"ReturnDesc":"{\"address\",\"12:12:12:12:12\",\"name\":\"设备名称\",\"BondState\":\"10\"}"
+		}
+	],
+	"ID":"M0176_Bluetooth",
+	"Icon":"doWork/20180812/113ab9714ef644b6bed70ba1d4bc2ce4.png",
+	"asyncMethodes":[
+		{
+			"Description":"开启扫描设备功能",
+			"Paras":[],
+			"ID":"startScan",
+			"ReturnType":"Bool",
+			"Name":"开启扫描",
+			"ReturnDesc":"开启成功后返回 true 其他情况返回 false"
+		},
+		{
+			"Description":"蓝牙配对方法 ，传递mac地址 和 配对密码，会激发后面的事件",
+			"Paras":[
+				{
+					"DefaultValue":"",
+					"Type":"String",
+					"Description":"要配对的 mac地址",
+					"Required":1,
+					"ID":"address",
+					"Name":"地址"
+				},
+				{
+					"DefaultValue":"配对密码 一般是 0000 或 1234",
+					"Type":"String",
+					"Description":"配对密码 一般是 0000 或 1234",
+					"Required":1,
+					"ID":"psw",
+					"Name":"配对密码"
+				}
+			],
+			"ID":"pair",
+			"ReturnType":"Bool",
+			"Name":"蓝牙配对方法",
+			"ReturnDesc":"开启成功返回true 否则返回 false"
+		},
+		{
+			"Description":"取消手机上所有配对 无输入参数",
+			"Paras":[],
+			"ID":"removePair",
+			"ReturnType":"Bool",
+			"Name":"取消配对",
+			"ReturnDesc":"取消成功返回 true 否则返回 false"
+		},
+		{
+			"Description":"根据mac 链接设备",
+			"Paras":[
+				{
+					"DefaultValue":"链接设备mac地址",
+					"Type":"String",
+					"Description":"链接设备mac地址",
+					"Required":1,
+					"ID":"address",
+					"Name":"链接设备mac地址"
+				}
+			],
+			"ID":"connect",
+			"ReturnType":"Bool",
+			"Name":"链接蓝牙设备 核心方法",
+			"ReturnDesc":"开始链接返回true 否则返回false 注意，开始链接不表示成功，要通过方法"
+		},
+		{
+			"Description":"发送方法 注意是发送16进制",
+			"Paras":[
+				{
+					"DefaultValue":"0x123456",
+					"Type":"String",
+					"Description":"发送内容，16进制",
+					"Required":1,
+					"ID":"data",
+					"Name":"发送内容，16进制"
+				}
+			],
+			"ID":"send",
+			"ReturnType":"Bool",
+			"Name":"发送方法 注意是发送16进制",
+			"ReturnDesc":"发送成功返回true，其他返回false"
+		}
+	],
+	"IOS":{
+		"MinVersion":"",
+		"Support":0
+	},
+	"Properties":[],
+	"IsContainer":"",
+	"Android":{
+		"MinVersion":"4.0",
+		"Support":1
+	}
+}
